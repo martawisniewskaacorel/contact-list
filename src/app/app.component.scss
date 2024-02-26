@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  background: #e0e0e0;
+  height: 100%;
+}
+
+app-result-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 100px;
+}
