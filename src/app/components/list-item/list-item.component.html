@@ -1,4 +1,4 @@
-<div class="contact-item">
+<div *ngIf="item" class="contact-item" (mouseenter)="changeMode(true)" (mouseleave)="changeMode(false)">
   <img *ngIf="item?.profile_image" class="contact-item__image" [ngSrc]="item.profile_image" [width]="200" [height]="200"/>
   <img *ngIf="item?.icon" class="contact-item__icon" [ngSrc]="item.icon" [width]="20" [height]="20"/>
 
@@ -7,4 +7,8 @@
     <span *ngIf="item.job">{{item.job}}</span>
     <span *ngIf="item.company_name">{{ '@'+item.company_name}}</span>
   </p>
+  <div *ngIf="fullMode">
+    <p *ngIf="item?.phone">{{item.phone}}</p>
+    <p *ngIf="item.email">{{item.email}}</p>
+  </div>
 </div>

@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, signal} from '@angular/core';
 import {JsonPipe, NgIf, NgOptimizedImage} from "@angular/common";
+import {Contact} from "../../interfaces/contact";
 
 @Component({
   selector: 'app-list-item',
@@ -14,5 +15,10 @@ import {JsonPipe, NgIf, NgOptimizedImage} from "@angular/common";
 })
 export class ListItemComponent {
   @Input() item: any;
+
+  fullMode = false;
+  changeMode(flag: boolean) {
+    this.fullMode = flag;
+  }
 
 }
