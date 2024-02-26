@@ -22,7 +22,10 @@ export class SearchService {
   }
 
   filterResults(query: string) {
-    return this.getAllResults().pipe(map((results: Contact[]) => results.filter((contact: Contact) => contact.name?.includes(query))))
+    return this.getAllResults().pipe(map((results: Contact[]) => {
+      // @ts-ignore
+      return results.filter((contact: Contact) => query.toLowerCase() ? contact.name?.toLowerCase().indexOf(query.toLowerCase())>-1 : true)
+    }))
   }
 
 
