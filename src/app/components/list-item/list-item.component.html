@@ -1,1 +1,10 @@
-<ng-container *ngIf="item">{{item | json}}</ng-container>
+<div class="contact-item">
+  <img *ngIf="item?.profile_image" class="contact-item__image" [ngSrc]="item.profile_image" [width]="200" [height]="200"/>
+  <img *ngIf="item?.icon" class="contact-item__icon" [ngSrc]="item.icon" [width]="200" [height]="200"/>
+
+  <p *ngIf="item.name" class="contact-item__name">{{item.name}}</p>
+  <p *ngIf="item.job || item.company_name" class="contact-item__job">
+    <span *ngIf="item.job">{{item.job}}</span>
+    <span *ngIf="item.company_name">{{ '@'+item.company_name}}</span>
+  </p>
+</div>

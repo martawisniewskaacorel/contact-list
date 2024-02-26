@@ -18,11 +18,9 @@ import {take, tap} from "rxjs";
   styleUrl: './result-list.component.scss'
 })
 export class ResultListComponent implements OnInit{
-
+  results$ = this.searchService.results$;
   constructor(private searchService: SearchService) {
   }
-
-  results$ = this.searchService.results$;
 
   ngOnInit() {
     this.searchService.getAllResults().pipe(

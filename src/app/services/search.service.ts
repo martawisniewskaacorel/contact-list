@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import {API_URL} from "../app.config";
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
+import {Contact} from "../interfaces/contact";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private resultsSubject: BehaviorSubject<any[]> = new BehaviorSubject([] as any);
+  private resultsSubject: BehaviorSubject<any[]> = new BehaviorSubject([] as Contact[]);
   results$ = this.resultsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  getAllResults(): Observable<any[]> {
-    return this.http.get(API_URL) as Observable<any[]>;
+  getAllResults(): Observable<Contact[]> {
+    return this.http.get(API_URL) as Observable<Contact[]>;
   }
 
-  setResults(results: any[]) {
+  setResults(results: Contact[]) {
     this.resultsSubject.next(results);
   }
 
   filterResults(query: string) {
-    const filteredResults = this.resultsSubject.value.filter((contact => contact.name.includes(query)))
-    this.setResults(filteredResults);
+    return this.getAllResults().pipe(map((results: Contact[]) => results.filter((contact: Contact) => contact.name?.includes(query))))
   }
 
 
